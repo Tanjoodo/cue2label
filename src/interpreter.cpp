@@ -11,19 +11,12 @@ index parse_index(token index_token);
 interpreter::interpreter(std::vector<std::string> file_lines)
 {
 	using namespace std;
-	// TODO
-	// Parse each line and tokenize it
-	// Then, execute each command
+
 	for (auto line: file_lines) {
 		vector<string> line_pieces = parse_line(line);
 		vector<token> tokens = tokenize(line_pieces);
 		interpret_command(tokens);
 	}
-	for (auto t: this->track_list)
-		std::cout << "track found: " << t.title
-			<< " with index " << t.ind.seconds / 60 << "m "
-			<< t.ind.seconds % 60 << "s "
-			<< t.ind.frames << "f\n";
 }
 
 void interpreter::interpret_command(std::vector<token> tokens)
