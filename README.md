@@ -1,5 +1,5 @@
 #cue2label
-cue2label can take a [.cue file](https://en.wikipedia.org/wiki/Cue_sheet_(computing\)), the associated file's length and generate an audacity style lables file that you can import to easily cut that file into smaller tracks.
+cue2label can take a [.cue file](https://en.wikipedia.org/wiki/Cue_sheet_(computing)), the associated file's length and generate an audacity style lables file that you can import to easily cut that file into smaller tracks.
 
 This is useful for splitting the tracks of an audio CD image.
 
