@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS= -c -Wall --std=c++11
+override CFLAGS+=-c -Wall --std=c++11
 
 all: cue2label
 
