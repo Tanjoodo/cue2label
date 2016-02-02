@@ -24,24 +24,26 @@ void interpreter::interpret_command(std::vector<token> tokens)
 	if (tokens[0].is_keyword)
 	{
 		if (tokens[0].value == "TITLE") {
-			if (!index_valid) {
-				this->current_track_name = tokens[1].value;
-				this->name_valid = true;
+			if (name_valid) {
+				if (!track_list.empty())
+					this->track_list[track_list.size() - 1].title
+					   	= tokens[1].value;
+				this->name_valid = false;
 			}
 		}		
 		else if (tokens[0].value == "INDEX") {
-			if (!index_valid){
-			   	this->current_track_index = parse_index(tokens[2]);
-				this->index_valid = true;
+			if (index_valid){
+				if (!track_list.empty())
+					this->track_list[track_list.size() - 1].ind
+					   	= parse_index(tokens[2]);
+				this->index_valid = false;
 			}
 		}
 		else if (tokens[0].value == "TRACK") {
-			if (name_valid && index_valid && this->current_track_name != "")
-				this->track_list.push_back(track(this->current_track_index,
-                                                 this->current_track_name));
+			this->track_list.push_back(track());
 
-			this->name_valid = false;
-			this->index_valid = false;
+			this->name_valid = true;
+			this->index_valid = true;
 		}
 	}
 }
@@ -91,10 +93,10 @@ std::vector<std::string> parse_line(std::string line)
 			}
 		   	else if (c == '"') {
 				in_string = true;
-				current += c;
+				if (c != '\r') current += c;
 			}
 		   	else {
-				current += c;
+				if (c != '\r') current += c;
 			}
 		}
 		else {
